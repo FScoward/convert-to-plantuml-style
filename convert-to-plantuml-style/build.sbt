@@ -1,14 +1,15 @@
 import Dependencies._
 
-ThisBuild / scalaVersion     := "2.12.8"
+ThisBuild / scalaVersion     := "2.13.3"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "com.example"
-ThisBuild / organizationName := "example"
+ThisBuild / organization     := "com.github.fscoward"
+ThisBuild / organizationName := "fscoward"
 
 lazy val root = (project in file("."))
   .settings(
     name := "convert-to-plantuml-style",
-    libraryDependencies += scalaTest % Test
+    libraryDependencies += scalaTest % Test,
+    libraryDependencies += scalactic
   )
 
 // Uncomment the following for publishing to Sonatype.
