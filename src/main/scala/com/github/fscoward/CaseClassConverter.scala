@@ -16,7 +16,7 @@ object CaseClassConverter {
   }
 
   def readClassName(source: Array[String]): Option[String] = {
-    val r = """(.*\s|^)(class)\s(.*)(\(.*)""".r("case", "class", "name")
+    val r = """(^[a-z\[\]]*|^)\s?(class)\s(.*)(\(.*)""".r("case", "class", "name")
     source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
   }
 }

@@ -32,12 +32,13 @@ class CaseClassConverterSpec extends AnyFunSpec with should.Matchers {
     describe("#readClassName") {
       val testCase = Table(
         ("case name", "class"),
+        ("class", "class"),
         ("case class", "case class"),
         ("abstract class", "abstract class"),
         ("sealed class", "sealed class"),
         ("final class", "final class"),
-        ("protected case name", "class"),
-        ("protected[this] case name", "class")
+        ("protected case name", "protected class"),
+        ("protected[this] case name", "protected[this] class")
       )
       forAll(testCase) { (caseName, `class`) =>
         it(caseName) {
@@ -62,7 +63,7 @@ class CaseClassConverterSpec extends AnyFunSpec with should.Matchers {
         |/* 
         | * class Sample(name: String)
         |**/
-        |class Amazing(naem: String)
+        |class Amazing(name: String)
         |""".stripMargin
         val s = sample.split(System.lineSeparator())
 
