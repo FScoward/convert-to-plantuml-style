@@ -4,9 +4,9 @@ case class PUMLClass(packageName: String, className: String)
 
 object CaseClassConverter {
   def convertPUMLClass(classStr: String): PUMLClass = {
-    val stringList: Array[String] = classStr.split(System.lineSeparator())
-    val packageName = ScalaFileReader.readPackageName(stringList)
-    val className = ScalaFileReader.readClassName(stringList)
+    val scalaFileReader = new ScalaFileReader(classStr)
+    val packageName = scalaFileReader.readPackageName
+    val className = scalaFileReader.readClassName
 
     PUMLClass(packageName.getOrElse(""), className.getOrElse(""))
   }
