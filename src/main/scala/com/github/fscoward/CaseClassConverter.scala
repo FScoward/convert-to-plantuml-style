@@ -3,20 +3,12 @@ package com.github.fscoward
 case class PUMLClass(packageName: String, className: String)
 
 object CaseClassConverter {
-  def convertPUMLClass(classStr: String) = {
+  def convertPUMLClass(classStr: String): PUMLClass = {
     val stringList: Array[String] = classStr.split(System.lineSeparator())
-    val packageName = readPackageName(stringList)
+    val packageName = ScalaFileReader.readPackageName(stringList)
+    val className = ScalaFileReader.readClassName(stringList)
 
-    PUMLClass(packageName.getOrElse(""), "todo")
+    PUMLClass(packageName.getOrElse(""), className.getOrElse(""))
   }
 
-  def readPackageName(source: Array[String]): Option[String] = {
-    val r = """(^package) (.*)""".r("package", "name")
-    source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
-  }
-
-  def readClassName(source: Array[String]): Option[String] = {
-    val r = """(^[a-z\[\]]*|^)\s?(class)\s(.*)(\(.*)""".r("case", "class", "name")
-    source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
-  }
 }
