@@ -12,6 +12,6 @@ object CaseClassConverter {
 
   def readPackageName(source: Array[String]): Option[String] = {
     val r = """(^package) (.*)""".r("package", "name")
-    source.headOption.flatMap(r.findFirstMatchIn).map(_.group("name"))
+    source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
   }
 }

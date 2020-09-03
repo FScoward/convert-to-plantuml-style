@@ -17,9 +17,7 @@ class CaseClassConverterSpec extends AnyFunSpec {
       assert(actual === expected)
     }
     it("#readPackageName") {
-      val sample =
-        """
-                  |package com.github.fscoward
+      val sample ="""package com.github.fscoward
                   |
                   |case class SampleClass(name: String)
                   |""".stripMargin
