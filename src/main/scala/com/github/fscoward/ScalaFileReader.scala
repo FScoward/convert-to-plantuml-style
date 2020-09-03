@@ -1,8 +1,13 @@
 package com.github.fscoward
 
 object ScalaFileReader {
+  def readObjectName(source: Array[String]): Option[String] = {
+    val r = """(^object)\s(\w*)\s??(\{.*)""".r("object", "name")
+    source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
+  }
+
   def readPackageName(source: Array[String]): Option[String] = {
-    val r = """(^package) (.*)""".r("package", "name")
+    val r = """(^package)\s(.*)""".r("package", "name")
     source.find(s => r.matches(s)).flatMap(r.findFirstMatchIn).map(_.group("name"))
   }
 

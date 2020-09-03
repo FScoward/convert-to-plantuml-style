@@ -17,6 +17,5 @@ class CaseClassConverterSpec extends AnyFunSpec with should.Matchers {
       val expected = PUMLClass("com.github.fscoward", "SampleClass")
       actual shouldEqual expected
     }
-
   }
 }

@@ -10,5 +10,4 @@ object CaseClassConverter {
 
     PUMLClass(packageName.getOrElse(""), className.getOrElse(""))
   }
-
 }

@@ -35,7 +35,6 @@ class ScalaFileReaderSpec extends AnyFunSpec with should.Matchers {
                           |${`class`} SampleClass(name: String)
                           |""".stripMargin
 
-
           val actual = ScalaFileReader.readClassName(sample.split(System.lineSeparator()))
           val expected = Some("SampleClass")
           actual shouldEqual expected
@@ -55,6 +54,32 @@ class ScalaFileReaderSpec extends AnyFunSpec with should.Matchers {
 
         val actual = ScalaFileReader.readClassName(sample.split(System.lineSeparator()))
         val expected = Some("Amazing")
+        actual shouldEqual expected
+      }
+    }
+    describe("#readObjectName") {
+      it("object名の後ろに空白あり") {
+
+        val testData = """package com.github.fscoward
+                     |
+                     |object Sample {
+                     |}
+                     |""".stripMargin
+
+        val actual = ScalaFileReader.readObjectName(testData.split(System.lineSeparator()))
+        val expected = Some("Sample")
+        actual shouldEqual expected
+      }
+      it("object名の後ろに空白なし") {
+
+        val testData = """package com.github.fscoward
+                         |
+                         |object Sample{
+                         |}
+                         |""".stripMargin
+
+        val actual = ScalaFileReader.readObjectName(testData.split(System.lineSeparator()))
+        val expected = Some("Sample")
         actual shouldEqual expected
       }
     }
