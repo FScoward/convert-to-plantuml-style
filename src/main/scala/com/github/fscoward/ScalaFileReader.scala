@@ -1,5 +1,6 @@
 package com.github.fscoward
 
+/** https://murashun.jp/blog/20190215-01.html */
 class ScalaFileReader(source: String) {
   val lines: Array[String] = source.split(System.lineSeparator())
   def readObjectName: Option[String] = {
